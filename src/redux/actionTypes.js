@@ -1,0 +1,5 @@
+export default {
+    ADD_RECIPE: 'ADD_RECIPE',
+    DELETE_RECIPE: 'DELETE_RECIPE',
+    UPDATE_RECIPE: 'UPDATE_RECIPE',
+}

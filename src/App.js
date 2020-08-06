@@ -1,24 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useSelector, useDispatch } from 'react-redux';
+
+import Header from './components/Header';
+import Recipes from './components/Recipes';
+
+import {addRecipe, deleteRecipe, updateRecipe} from './redux/actions/RecipeActions';
 
 function App() {
+  const dispatch = useDispatch();
+  const recipes = useSelector(({recipe}) => recipe.recipes);
+
+
+
+  const addRecipeIn = (obj) => {
+      dispatch(addRecipe(obj));
+  }
+  const deleteRecipeIn = (id) => {
+    dispatch(deleteRecipe(id));
+  }
+  const updateRecipeIn = (id, obj) => {
+    dispatch(updateRecipe(id, obj))
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <Header addRecipeIn={addRecipeIn}/>
+
+      <Recipes recipes={recipes} deleteRecipeIn={deleteRecipeIn} updateRecipeIn={updateRecipeIn} />
+
     </div>
   );
 }
